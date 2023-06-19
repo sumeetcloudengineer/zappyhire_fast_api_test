@@ -17,8 +17,7 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
-            steps {    
-                sh 'sudo -i'            
+            steps {
                 sh 'sudo docker build -t zappyhire-fast-api-test:latest .'
                 sh 'sudo docker run -d --name zappyhire-fast-api-container -p 80:80 zappyhire-fast-api-test'
             }
