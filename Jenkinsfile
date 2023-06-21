@@ -1,6 +1,6 @@
 pipeline {
     environment {
-		registry = "sumeetcloudengineer/zappyhire-fast-api"
+		registry = "sumeetcloudengineer/zappyhire"
 		registryCredentials = 'docker-credentials'
 	}
     agent any
@@ -18,14 +18,14 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t zappyhire-fast-api-test:latest .'
-                sh 'docker run -d --name zappyhire-fast-api-container -p 80:80 zappyhire-fast-api-test'
+                sh 'docker build -t zappyhire-project:latest .'
+                sh 'docker run -p 80:80 --name zappyhire-container -d zappyhire-project:latest'
             }
         }
         stage('Push Docker Image') {
             steps {
-                sh 'docker tag zappyhire-fast-api-test sumeetcloudengineer/zappyhire-fast-api'
-                sh 'docker push sumeetcloudengineer/zappyhire-fast-api:latest'
+                sh 'docker tag zappyhire-project sumeetcloudengineer/zappyhire-docker-image'
+                sh 'docker push sumeetcloudengineer/zappyhire-docker-image'
             }
         }
     }
