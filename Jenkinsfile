@@ -25,7 +25,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 sh 'docker tag zappyhire-fast-api-test sumeetcloudengineer/zappyhire-fast-api'
-                sh 'docker push sumeetcloudengineer/zappyhire-fast-api'
+                sh 'docker push sumeetcloudengineer/zappyhire-fast-api:latest'
             }
         }
     }
