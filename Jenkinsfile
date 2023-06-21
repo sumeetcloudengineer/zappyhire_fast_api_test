@@ -1,8 +1,5 @@
 pipeline {
-    environment {
-		registry = "sumeetcloudengineer/zappyhire"
-		registryCredentials = 'docker-credentials'
-	}
+    
     agent any
 
     stages {
@@ -21,13 +18,7 @@ pipeline {
                 sh 'docker build -t zappyhire-project:latest .'
                 sh 'docker run -p 80:80 --name zappyhire-container -d zappyhire-project:latest'
             }
-        }
-        stage('Push Docker Image') {
-            steps {
-                sh 'docker tag zappyhire-project sumeetcloudengineer/zappyhire-docker-image'
-                sh 'docker push sumeetcloudengineer/zappyhire-docker-image'
-            }
-        }
+        }        
     }
     post { 
         always { 
